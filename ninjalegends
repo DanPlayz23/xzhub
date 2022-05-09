@@ -1,0 +1,156 @@
+
+  local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/sol"))()
+
+  local win = SolarisLib:New({
+    Name = "XZ Hub - Ninja Legends", 
+    FolderToSave = "XZLoader"
+  })
+  local player = game.Players.LocalPlayer
+  local character = player.Character
+  local humanoid = character.Humanoid
+  
+  local tab = win:Tab("Main") 
+  local tab2 = win:Tab("Player")
+  
+  local mainsection = tab:Section("Main")
+  
+  
+  
+  mainsection:Toggle("Auto Swing", false,"Toggle", function(v)
+    getgenv().autoswing = v
+    while true do
+        if not getgenv().autoswing then return end
+        for _,v in pairs(game.Players.LocalPlayer.Backpack:GetChildren()) do
+            if v:FindFirstChild("ninjitsuGain") then
+                game.Players.LocalPlayer.Character.Humanoid:EquipTool(v)
+                break
+            end
+        end
+        local A_1 = "swingKatana"
+        local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+        Event:FireServer(A_1)
+        wait(0.1)
+    end
+  end)
+  
+  mainsection:Toggle("Auto Sell",false,"Toggle",function(v)
+    getgenv().autosell = v
+    while true do
+        if getgenv().autosell == false then return end
+        game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame
+        wait(0.0)
+        game:GetService("Workspace").sellAreaCircles["sellAreaCircle16"].circleInner.CFrame = CFrame.new(0,0,0)
+        wait(0.0)
+    end
+  end)
+  
+  mainsection:Toggle("Auto Buy Swords",false,"Toggle", function(v)
+      getgenv().buyswords = v
+      while true do
+          if not getgenv().buyswords then return end
+          local A_1 = "buyAllSwords"
+          local A_2 = "Blazing Vortex Island"
+          local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+          Event:FireServer(A_1, A_2)
+          wait(0.5)
+      end
+  end) 
+  mainsection:Toggle("Auto Buy Belts",false ,"Toggle", function(v)
+    getgenv().buybelts = v
+    while true do
+        if not getgenv().buybelts then return end
+        local A_1 = "buyAllBelts"
+        local A_2 = "Blazing Vortex Island"
+        local Event = game:GetService("Players").LocalPlayer.ninjaEvent
+        Event:FireServer(A_1, A_2)
+        wait(0.5)
+    end
+  end)
+  
+  mainsection:Toggle("Auto Buy Ranks",false,"Toggle", function(State)
+    Ranks = State
+    while Ranks do
+    wait(1)
+    local deku1 = "buyRank"
+    local deku2 = {"Rookie", "Grasshopper", "Apprentice", "Samurai", "Assassin", "Shadow", "Ninja", "Master Ninja", "Sensei", "Master Sensei", "Ninja Legend", "Master Of Shadows", "Immortal Assassin", "Eternity Hunter", "Shadow Legend", "Dragon Warrior", "Dragon Master", "Chaos Sensei", "Chaos Legend", "Master Of Elements"
+    , "Elemental Legend", "Ancient Battle Master", "Ancient Battle Legend", "Legendary Shadow Duelist", "Master Legend Assassin", "Mythic Shadowmaster", "Legendary Shadowmaster", "Awakened Scythemaster", "Awakened Scythe Legend", "Master Legend Zephyr", "Golden Sun Shuriken Master", "Golden Sun Shuriken Legend", "Dark Sun Samurai Legend", "Dragon Evolution Form I", "Dragon Evolution Form II", "Dragon Evolution Form III", "Dragon Evolution Form IV",
+    "Dragon Evolution Form V", "Cybernetic Electro Master", "Cybernetic Electro Legend", "Shadow Chaos Assassin", "Shadow Chaos Legend", "Infinity Sensei", "Infinity Legend", "Aether Genesis Master Ninja", "Master Legend Sensei Hunter", "Skystorm Series Samurai Legend", "Master Elemental Hero", "Eclipse Series Soul Master",
+    "Starstrike Master Sensei", "Evolved Series Master Ninja", "Dark Elements Guardian", "Elite Series Master Legend", "Infinity Shadows Master", "Lightning Storm Sensei", "Dark Elements Blademaster", "Rising Shadow Eternal Ninja", "Skyblade Ninja Master", "Shadow Storm Sensei", }
+        
+    for i = 1, #deku2 do
+    game:GetService("Players").LocalPlayer.ninjaEvent:FireServer(deku1, deku2[i])
+    end
+    end
+  end)
+  
+  
+  
+  mainsection:Button("Get all Elements", function()
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Frost")
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Shadow Charge")
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Shadowfire")
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Lightning")
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Inferno")
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Masterful Wrath")
+     game.ReplicatedStorage.rEvents.elementMasteryEvent:FireServer("Electrical Chaos")
+  end) 
+  
+  mainsection:Button("Unlock Every Island", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Enchanted Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Astral Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Mystical Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Space Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Tundra Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Eternal Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Sandstorm"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Thunderstorm"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Ancient Inferno Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Midnight Shadow Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Mythical Souls Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Winter Wonder Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Golden Master Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Dragon Legend Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Cybernetic Legends Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Skystorm Ultraus Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Chaos Legends Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Soul Fusion Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Dark Elements Island"].CFrame
+    wait(0.6)
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = game:GetService("Workspace").islandUnlockParts["Blazing Vortex Island"].CFrame
+  end)
+mainsection:Toggle("Eternal Boss",false,"Toggle", function(State)
+  wait1 = State
+  game:GetService('RunService').Stepped:connect(function()
+  pcall(function()
+  if wait1 then
+  game:GetService("Players").LocalPlayer.ninjaEvent:FireServer("swingKatana")
+  game.Players.LocalPlayer.Character.Humanoid:ChangeState(11)
+  for i,v in pairs(game:GetService("Workspace").bossFolder.EternalBoss:GetDescendants()) do
+  if v:IsA("Part")  and v.Name ~= "HumanoidRootPart" then
+  game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = v.CFrame
+  end
+  end
+  end
+  end)
+  end)
+  end)
+
+
