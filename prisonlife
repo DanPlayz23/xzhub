@@ -1,0 +1,206 @@
+-- // loading process \\ --
+repeat wait() until game:IsLoaded()
+if game:GetService("CoreGui"):FindFirstChild("lib") then
+    game:GetService("CoreGui"):FindFirstChild("lib"):Destroy()
+end
+-- // Function settings \\
+
+-- // Hub Settings \\ --
+local SolarisLib = loadstring(game:HttpGet("https://raw.githubusercontent.com/bloodball/-back-ups-for-libs/main/sol"))()
+loadstring(game:HttpGet("https://raw.githubusercontent.com/kl1zyydf/hub/main/logs"))()
+
+local win = SolarisLib:New({
+  Name = "XZ Hub",
+  FolderToSave = "XZLoader"
+})
+local scriptdev = "Kenai#6363"
+
+-- // Tabs \\ --
+local tab = win:Tab("Main")
+local tab2 = win:Tab("Combat")
+local tab3 = win:Tab("Teleports")
+local tab4 = win:Tab("Credits")
+
+
+
+-- // SECTIONS \\ --
+
+-- // Credits sections \\ --
+local g = tab4:Section("Hub credits")
+local f = tab4:Section("Hub owners")
+local b = tab4:Section("https://rbxscript.com")
+
+-- // Teleports sections \\ --
+local tp = tab3:Section("Teleports")
+
+-- // Main sections \\ --
+local a = tab:Section("Main")
+
+-- // Combat sections \\ --
+local av = tab2:Section("Guns")
+local ab = tab2:Section("All")
+local t = tab2:Section("Teams")
+
+
+f:Label("Script made by: Kenaii#6363")
+f:Label("Hub owners: kl1zyy#0666, kenai#6363")
+f:Label("hub coder: Brizzy#0666, BlixerCore#2043")
+
+b:Label("https://rbxscript.com <- BEST WEBSITE")
+g:Button("Discord server (click to copy)", function()
+    setclipboard("https://discord.gg/uAN9z5ph")
+end)
+
+g:Button("Youtube (click to copy)", function()
+    setclipboard("https://www.youtube.com/channel/UCJoYOh0zmuOmfDtkN15U-RA")
+end)
+
+g:Button("Telegram (click to copy)", function()
+    setclipboard("https://t.me/xzsquad")
+end)
+
+
+
+
+
+a:Button("BTools", function()
+    a = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+    a.BinType = 2
+    b = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+    b.BinType = 3
+    c = Instance.new("HopperBin", game.Players.LocalPlayer.Backpack)
+    c.BinType = 4
+end)
+
+
+av:Button("Remove Doors", function()
+	game:GetService("Workspace").Doors:Destroy()
+end)
+
+av:Button("Respawn", function()
+    game.Workspace.Remote.loadchar:InvokeServer(game.Players:GetChildren())
+end)
+
+av:Button("Gun Mods", function()
+    local m = require(game:GetService('Players').LocalPlayer.Character:FindFirstChildOfClass("Tool").GunStates)
+                m.Damage = 100
+                m.MaxAmmo = math.huge
+                m.CurrentAmmo = math.huge
+                m.AutoFire = true
+                m.FireRate = 0
+end)
+av:Button("Ak-47", function()
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+end)
+av:Button("Remington 870", function()
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+end)
+av:Button("M9", function()
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver.M9.ITEMPICKUP)
+end)
+
+av:Button("M4A1 (Need gamepass)", function()
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver.M4A1.ITEMPICKUP)
+end)
+
+ab:Button("Get all guns", function()
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver["Remington 870"].ITEMPICKUP)
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver["AK-47"].ITEMPICKUP)
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver.M9.ITEMPICKUP)
+    Workspace.Remote.ItemHandler:InvokeServer(Workspace.Prison_ITEMS.giver.M4A1.ITEMPICKUP)
+end)
+
+
+
+av:Button("Strongest Punch (f)", function()
+    mainRemotes = game.ReplicatedStorage
+    meleeRemote = mainRemotes['meleeEvent']
+    mouse = game.Players.LocalPlayer:GetMouse()
+    punching = false
+    cooldown = false
+    function punch()
+    cooldown = true
+    local part = Instance.new("Part", game.Players.LocalPlayer.Character)
+    part.Transparency = 1
+    part.Size = Vector3.new(5, 2, 3)
+    part.CanCollide = false
+    local w1 = Instance.new("Weld", part)
+    w1.Part0 = game.Players.LocalPlayer.Character.Torso
+    w1.Part1 = part
+    w1.C1 = CFrame.new(0,0,2)
+    part.Touched:connect(function(hit)
+    if game.Players:FindFirstChild(hit.Parent.Name) then
+    local plr = game.Players:FindFirstChild(hit.Parent.Name)
+    if plr.Name ~= game.Players.LocalPlayer.Name then part:Destroy() for i = 1,100 do
+    meleeRemote:FireServer(plr) end end end end)
+    wait(1)
+    cooldown = false
+    part:Destroy()
+    end
+    mouse.KeyDown:connect(function(key)
+    if cooldown == false then
+    if key:lower() == "f" then
+    punch()
+    end
+    end
+    end)
+end)
+
+ab:Button("Arrest all (working at all teams)", function()
+    local Player = game.Players.LocalPlayer
+    local cpos = Player.Character.HumanoidRootPart.CFrame
+    for i,v in pairs(game.Teams.Criminals:GetPlayers()) do
+    if v.Name ~= Player.Name then
+    local i = 10
+    repeat
+    wait()
+    i = i-1
+    game.Workspace.Remote.arrest:InvokeServer(v.Character.HumanoidRootPart)
+    Player.Character.HumanoidRootPart.CFrame = v.Character.HumanoidRootPart.CFrame * CFrame.new(0, 0, 1)
+    until i == 0
+    end
+    end
+    Player.Character.HumanoidRootPart.CFrame = cpos
+end)
+
+
+
+t:Button("Neutral", function()
+    workspace.Remote.TeamEvent:FireServer("Medium stone grey")
+end)
+
+t:Button("Prisoners", function()
+    workspace.Remote.TeamEvent:FireServer("Bright orange")
+end)
+
+
+
+
+
+
+
+
+
+
+
+
+tp:Button("Prison", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(846.502197, 102.460556, 2358.45654)
+end)
+
+tp:Button("Criminal Base", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(-904.30481, 105.855263, 2070.95117)
+end)
+
+tp:Button("Yard", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(790.503235, 103.46212, 2459.52905)
+end)
+
+tp:Button("Prison Escape", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(566.152283, 107.398636, 2232.87817)
+end)
+tp:Button("Guard Spawn", function()
+    game.Players.LocalPlayer.Character.HumanoidRootPart.CFrame = CFrame.new(831.733032, 105.600052, 2316.95923)
+end)
+
+
